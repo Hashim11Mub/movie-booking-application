@@ -1,25 +1,27 @@
-const mangoose = require('mangoose')
-const UserSchema = new mangoose.Schema({
+const mongoose = require('mongoose');
+
+const UserSchema = new mongoose.Schema({
     name: {
-        type: 'string',
-        required: true 
+        type: String,
+        required: true
     },
+
     email: {
-        type: 'string',
+        type: String,
         required: true,
         unique: true
     },
-    password: {
-        type: 'string',
-        required: true,
-        minlength: 6,
-    },
 
+    password: {
+        type: String,
+        required: true,
+        minLength: 6
+    },
     bookings: [{
-        type: mangoose.Types.ObjectId,
-        ref:'Booking'
+        type: mongoose.Types.ObjectId,
+        ref: 'Booking',
+        
     }]
-    
 })
-const user = mangoose.model('user', UserSchema)
-    module.exports = user;
+const user =  mongoose.model('user', UserSchema)
+module.exports = user;

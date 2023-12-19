@@ -1,22 +1,21 @@
-const mangoose = require('mangoose')
-const AdminSchema = new mangoose.Schema({
- 
+const mongoose = require('mongoose');
+
+const AdminSchema = new mongoose.Schema({
     email: {
-        type: 'string',
-        required: true,
+        type: String,
+        required:true,
         unique: true
     },
     password: {
-        type: 'string',
-        required: true,
-        minlength: 6,
+        type: String,
+        minLength: 6,
+        required: true
     },
-
-   addedMoves: [{
-    type: mangoose.Types.ObjectId,
-    ref: 'Movies'
-   }]
+    addedMovies: [{
+        type:mongoose.Types.ObjectId,
+        ref:'Movies'
+    }]
 });
 
-const admin = mangoose.model('admin', AdminSchema)
-module.exports = admin
+const admin =  mongoose.model('admin', AdminSchema)
+module.exports = admin;
